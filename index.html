@@ -1,23 +1,886 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "InsuranceAgency",
+      "name": "고혈압 실비 보험 전문 비교 분석 플랫폼",
+      "url": "https://financial.reliabledone.com",
+      "description": "2026년 최신 고혈압 실비 보험 가입 가이드. 유병자 실손의료보험 비교 및 보험사별 견적 정보를 제공합니다. 고혈압 환자도 부담 없는 보험료로 든든한 혜택을 설계해 드립니다.",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "서울특별시 중구 금융로 100",
+        "addressLocality": "서울특별시",
+        "postalCode": "04500",
+        "addressCountry": "KR"
+      },
+      "priceRange": "KRW",
+      "areaServed": "대한민국 전역",
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "만성질환자 맞춤형 실손보험 상품군",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Product",
+              "name": "간편심사 유병자 실비 보험"
+            },
+            "price": "28000",
+            "priceCurrency": "KRW",
+            "description": "고혈압 및 당뇨 환자를 위한 월 평균 예상 보험료 수준"
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Product",
+              "name": "다이렉트 무심사 대체형 보험"
+            },
+            "price": "34000",
+            "priceCurrency": "KRW",
+            "description": "복합 만성질환 기왕력자를 위한 계약 전환형 실비 플랜"
+          }
+        ]
+      }
+    }
+  </script>
+
+  <style>
+    :root {
+      --primary-color: #2c4a5e;
+      --primary-light: #527a94;
+      --secondary-color: #14b8a6;
+      --accent-color: #f43f5e;
+      --bg-color: #f8fafc;
+      --card-bg: #ffffff;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --border-color: #e2e8f0;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
+      --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+      --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
+    }
+
+    body {
+      font-family: "Noto Sans KR", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      line-height: 1.8;
+      margin: 0;
+      padding: 0;
+      word-break: keep-all;
+    }
+
+    header {
+      background: linear-gradient(135deg, var(--primary-color) 0%, #1e293b 100%);
+      color: white;
+      padding: 3rem 1.5rem;
+      text-align: center;
+      position: relative;
+    }
+
+    header h1 {
+      font-size: 2.3rem;
+      font-weight: 800;
+      margin: 0 0 1rem 0;
+      letter-spacing: -0.05em;
+    }
+
+    header p {
+      font-size: 1.1rem;
+      color: #94a3b8;
+      margin: 0 auto 2rem auto;
+      max-width: 700px;
+    }
+
+    nav {
+      max-width: 1100px;
+      margin: 0 auto;
+      background: rgba(255, 255, 255, 0.08);
+      padding: 0.5rem;
+      border-radius: 50px;
+    }
+
+    nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+
+    nav a {
+      color: #cbd5e1;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      transition: all 0.3s ease;
+    }
+
+    nav a:hover {
+      color: white;
+      background-color: var(--secondary-color);
+    }
+
+    main {
+      max-width: 1100px;
+      margin: 3rem auto;
+      padding: 0 1.5rem;
+    }
+
+    section {
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 2.5rem;
+      margin-bottom: 2.5rem;
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--border-color);
+    }
+
+    h2 {
+      color: var(--primary-color);
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin-top: 0;
+      margin-bottom: 1.5rem;
+      border-bottom: 3px solid #f1f5f9;
+      padding-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+    }
+
+    h3 {
+      color: var(--primary-light);
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      text-align: justify;
+      color: #334155;
+      margin-bottom: 1.5rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 2rem 0;
+      font-size: 0.95rem;
+      box-shadow: var(--shadow-sm);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    th, td {
+      padding: 1.2rem;
+      border-bottom: 1px solid var(--border-color);
+      text-align: left;
+    }
+
+    th {
+      background-color: var(--primary-color);
+      color: white;
+      font-weight: 600;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f8fafc;
+    }
+
+    /* CSS Graph Styling */
+    .chart-container {
+      background: #f1f5f9;
+      border-radius: 12px;
+      padding: 2rem;
+      margin: 2rem 0;
+    }
+
+    .chart-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .chart-row {
+      display: grid;
+      grid-template-columns: 120px 1fr 100px;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .chart-label {
+      font-weight: 600;
+      color: var(--primary-color);
+      font-size: 0.9rem;
+    }
+
+    .chart-bar-container {
+      background-color: #cbd5e1;
+      height: 24px;
+      border-radius: 12px;
+      overflow: hidden;
+      width: 100%;
+    }
+
+    .chart-bar {
+      height: 100%;
+      border-radius: 12px;
+      transition: width 1s ease-in-out;
+    }
+
+    .bar-30 { background-color: var(--secondary-color); }
+    .bar-40 { background-color: var(--primary-light); }
+    .bar-50 { background-color: #f59e0b; }
+    .bar-60 { background-color: var(--accent-color); }
+
+    .chart-val {
+      text-align: right;
+      font-weight: 700;
+      color: var(--text-main);
+      font-size: 0.9rem;
+    }
+
+    /* Calculator and Self-test styles */
+    .interactive-card {
+      background: linear-gradient(to right bottom, #ffffff, #f0fdfa);
+      border: 2px solid #ccfbf1;
+      border-radius: 16px;
+      padding: 2.5rem;
+      margin: 2.5rem 0;
+    }
+
+    .calc-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    @media (max-width: 768px) {
+      .calc-grid {
+        grid-template-columns: 1fr;
+      }
+      .chart-row {
+        grid-template-columns: 1fr;
+        gap: 0.25rem;
+      }
+      .chart-val {
+        text-align: left;
+        margin-top: 0.25rem;
+      }
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .form-group label {
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--primary-color);
+    }
+
+    .form-group input, .form-group select {
+      padding: 0.75rem;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      font-size: 1rem;
+      outline: none;
+      transition: border-color 0.2s ease;
+    }
+
+    .form-group input:focus, .form-group select:focus {
+      border-color: var(--secondary-color);
+    }
+
+    .calc-btn {
+      background-color: var(--secondary-color);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 1rem 2rem;
+      font-size: 1.1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+      width: 100%;
+    }
+
+    .calc-btn:hover {
+      background-color: #0d9488;
+    }
+
+    .calc-result {
+      margin-top: 2rem;
+      padding: 1.5rem;
+      background-color: #ffffff;
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+      display: none;
+    }
+
+    /* FAQ accordion styles */
+    dl dt {
+      font-weight: 700;
+      margin-top: 1rem;
+      cursor: pointer;
+      color: var(--primary-color);
+      background-color: #f1f5f9;
+      padding: 1.2rem;
+      border-radius: 8px;
+      border-left: 4px solid var(--primary-light);
+      transition: all 0.2s ease;
+    }
+
+    dl dt:hover {
+      background-color: #e2e8f0;
+    }
+
+    dl dd {
+      margin: 0 0 1.5rem 0;
+      padding: 1.2rem;
+      background-color: #ffffff;
+      border: 1px solid var(--border-color);
+      border-top: none;
+      border-radius: 0 0 8px 8px;
+      display: none;
+    }
+
+    dl dt.active + dd {
+      display: block;
+    }
+
+    .keyword-tags {
+      margin: 2.5rem 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+    }
+
+    .keyword-tags span {
+      background-color: #f1f5f9;
+      color: var(--primary-light);
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      border: 1px solid var(--border-color);
+    }
+
+    footer {
+      text-align: center;
+      padding: 3rem 1.5rem;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      background-color: #1e293b;
+      border-top: 1px solid #334155;
+    }
+
+    footer p {
+      color: #94a3b8;
+      text-align: center;
+    }
+
+    .official-links {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .official-links a {
+      color: var(--primary-light);
+      text-decoration: underline;
+      font-weight: 500;
+    }
+
+    .lead-box {
+      background-color: #f0f9ff;
+      border: 1px solid #bae6fd;
+      padding: 1.5rem;
+      border-radius: 12px;
+      margin-bottom: 2rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>고혈압 실비 보험 가입 비교 및 실시간 요금 견적 분석</h1>
+    <p>2026년 기준 만성질환자를 위한 최적의 유병자 실손보험 추천 정보 및 맞춤 계산</p>
     <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
+      <ul>
+        <li><a href="#intro">만성질환 실비 정보</a></li>
+        <li><a href="#price-analysis">연령별 요금 비교</a></li>
+        <li><a href="#pros-cons">실손보장 장단점</a></li>
+        <li><a href="#calculator">보험료 셀프 계산</a></li>
+        <li><a href="#community">커뮤니티 트렌드</a></li>
+        <li><a href="#faq">자주 묻는 질문</a></li>
+      </ul>
     </nav>
-    <main>
-      <h1>Home page</h1>
-    </main>
-  </body>
-</html>
+  </header>
+
+  <main>
+    <section id="intro">
+      <h2>고혈압 실비 보험, 가입이 불가능하다는 편견은 그만</h2>
+      <div class="lead-box">
+        대한민국 성인 3명 중 1명이 앓고 있는 대표적인 만성질환인 고혈압. 과거에는 혈압약을 복용하고 있다는 이유만으로 실손의료보험 가입 신청서조차 제출하지 못하는 사례가 많았습니다. 하지만 보험 시장의 고도화와 인수 기준 완화로 인해 이제는 고혈압 환자도 합리적인 요금으로 든든한 의료비 혜택을 챙길 수 있는 상품 종류가 크게 다양해졌습니다.
+      </div>
+      <p>
+        신규로 의료실손 계약을 고려하는 상황이라면 가장 먼저 본인의 질환 상태가 표준체 실손에 해당하는지, 혹은 유병자형 간편 심사 대상에 해당하는지 비교해 보아야 합니다. 2026년 현재 손해보험사들은 다양한 종류의 고혈압 실비 보험 브랜드 라인업을 제공하며 소비자의 선택지를 확장하고 있습니다. 정확하게 보장 내용을 설계하고 저렴한곳 위주로 업체를 조율한다면, 매달 빠져나가는 불필요한 비용 누수를 미연에 방지할 수 있습니다.
+      </p>
+      <p>
+        최근에는 디지털 플랫폼을 적극적으로 활용해 인터넷 다이렉트 방식으로 손쉽게 여러 설계 견적을 요청하는 소비자가 늘었습니다. 복잡한 서류 제출 없이도 모바일 기기 하나만으로 개별 건강 조건에 알맞은 최저가 상품군을 추려내는 스마트한 가입 방법이 자리를 잡았습니다.
+      </p>
+    </section>
+
+    <section id="price-analysis">
+      <h2>2026년 기준 연령별 요금 비교 및 예상 납입 금액</h2>
+      <p>
+        고혈압 실비 보험 계약 시 매월 지불하는 요금은 나이, 성별, 직업군뿐만 아니라 현재 복용하고 있는 약제의 종류 및 동반 기왕력(당뇨, 이상지질혈증 등)의 유무에 따라 큰 차이점 양상을 보입니다. 아래 표는 4세대 유병자 실손의료보험 기준의 일반적인 월 평균 예상 요금 체계를 나타내고 있습니다.
+      </p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>연령대</th>
+            <th>구분</th>
+            <th>월 평균 예상 요금 (KRW)</th>
+            <th>상세 특징 및 가입 팁</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>30대</td>
+            <td>간편 심사 실손</td>
+            <td>15,000원 ~ 19,000원</td>
+            <td>합병증이 거의 없는 신규 가입 시기에 최적의 조건으로 요금제 선택 가능</td>
+          </tr>
+          <tr>
+            <td>40대</td>
+            <td>간편 심사 실손</td>
+            <td>22,000원 ~ 26,000원</td>
+            <td>본격적인 만성질환 관리가 시작되는 나이대로 다이렉트 추천 선호도 높음</td>
+          </tr>
+          <tr>
+            <td>50대</td>
+            <td>간편 심사 실손</td>
+            <td>32,000원 ~ 40,000원</td>
+            <td>상해 및 비급여 항목 청구 빈도가 늘어나므로 꼼꼼한 비용 비교 필수</td>
+          </tr>
+          <tr>
+            <td>60대 이상</td>
+            <td>노후 유병자 실손</td>
+            <td>48,000원 ~ 58,000원</td>
+            <td>인수 심사가 엄격해질 수 있으므로 전문 대리점의 맞춤 컨설팅 추천</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>고혈압 실비 보험 연령대별 평균 예상 월 납입액 추이</h3>
+      <p>
+        연령 증가에 따른 손해율 상승이 고스란히 갱신 비용에 투영됩니다. 아래 시각화 그래프를 통해 연령대에 따른 요금 변동폭을 체계적으로 관찰할 수 있습니다.
+      </p>
+
+      <div class="chart-container">
+        <div class="chart-wrapper">
+          <div class="chart-row">
+            <span class="chart-label">30대 평균</span>
+            <div class="chart-bar-container">
+              <div class="chart-bar bar-30" style="width: 35%;"></div>
+            </div>
+            <span class="chart-val">약 17,000원</span>
+          </div>
+          <div class="chart-row">
+            <span class="chart-label">40대 평균</span>
+            <div class="chart-bar-container">
+              <div class="chart-bar bar-40" style="width: 52%;"></div>
+            </div>
+            <span class="chart-val">약 24,000원</span>
+          </div>
+          <div class="chart-row">
+            <span class="chart-label">50대 평균</span>
+            <div class="chart-bar-container">
+              <div class="chart-bar bar-50" style="width: 78%;"></div>
+            </div>
+            <span class="chart-val">약 36,000원</span>
+          </div>
+          <div class="chart-row">
+            <span class="chart-label">60대 평균</span>
+            <div class="chart-bar-container">
+              <div class="chart-bar bar-60" style="width: 95%;"></div>
+            </div>
+            <span class="chart-val">약 53,000원</span>
+          </div>
+        </div>
+      </div>
+      <p>
+        상기 명시된 비용 지표는 어디까지나 표준적인 가상의 시나리오를 가정한 예측값이며, 개별적인 건강 상태와 보험사 순위별 언더라이팅 지침에 의해 실제 청구되는 견적 금액은 크게 조정될 수 있습니다.
+      </p>
+    </section>
+
+    <section id="calculator" class="interactive-card">
+      <h2>고혈압 실비 보험 셀프 보험료 계산기 & 적합성 진단 프로그램</h2>
+      <p>
+        자신의 간략한 건강 정보와 연령대를 선택하여 현재 시점에서 책정될 수 있는 예상 납입 비용 수준을 손쉽게 확인해 보십시오. 복잡한 본인 인증 없이도 편리하게 간이 산출이 가능합니다.
+      </p>
+
+      <div class="calc-grid">
+        <div class="form-group">
+          <label for="calc-age">가입 대상 연령</label>
+          <select id="calc-age">
+            <option value="30">30대 (만 30 ~ 39세)</option>
+            <option value="40" selected>40대 (만 40 ~ 49세)</option>
+            <option value="50">50대 (만 50 ~ 59세)</option>
+            <option value="60">60대 이상 (만 60세 이상)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="calc-gender">성별</label>
+          <select id="calc-gender">
+            <option value="male">남성</option>
+            <option value="female">여성</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="calc-history">고혈압 약 복용 기간</label>
+          <select id="calc-history">
+            <option value="1">1년 미만</option>
+            <option value="3">1년 이상 ~ 5년 미만</option>
+            <option value="5">5년 이상 복용 중</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="calc-complication">당뇨 등 동반 만성질환 여부</label>
+          <select id="calc-complication">
+            <option value="none">없음 (단독 고혈압)</option>
+            <option value="exists">있음 (당뇨 또는 이상지질혈증 동반)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="calc-type">가입 경로 선호도</label>
+          <select id="calc-type">
+            <option value="direct">다이렉트 온라인 자가 가입 (오프라인 수수료 차감)</option>
+            <option value="agent">오프라인 전문 설계사 일대일 컨설팅 가입</option>
+          </select>
+        </div>
+      </div>
+
+      <button type="button" class="calc-btn" onclick="calculatePremium()">예상 실손 보험료 산출하기</button>
+
+      <div id="calcResult" class="calc-result">
+        <h3>자가 진단 요금 산출 결과</h3>
+        <p>고객님의 맞춤형 조건으로 연산한 시뮬레이션 데이터입니다.</p>
+        <p style="font-size: 1.15rem; color: var(--primary-color);">
+          예상 기본 월 납입액: <strong id="resultAmount" style="color: var(--accent-color); font-size: 1.3rem;">0</strong> 원 선
+        </p>
+        <p id="resultDesc" style="font-size: 0.9rem; color: var(--text-muted);">
+          선택하신 요소를 바탕으로 다이렉트 할인 혜택이 간접 투영된 예측가입니다. 실제 계약 전환이나 신규 심사 시에는 세부 의료 이력에 따라 편차가 발생합니다.
+        </p>
+      </div>
+    </section>
+
+    <section id="pros-cons">
+      <h2>일반 실손의료보험과 유병자 실손의 장단점 및 차이점</h2>
+      <p>
+        고혈압 환자가 실손 상품을 신청하는 방법은 크게 두 가지 궤적으로 분류됩니다. 기존의 까다로운 언더라이팅 절차를 정면으로 돌파하여 가입하는 일반 실손의료보험(인수 조건 충족 시)과, 질문 사항을 대폭 단순화하여 손쉽게 진입하는 유병자 간편 실손의료보험입니다.
+      </p>
+
+      <h3>유병자 실손의 주요 장단점 분석</h3>
+      <p>
+        <strong>장점 첫 번째: 가입 문턱의 극적인 하향</strong><br>
+        가장 핵심적인 이점은 최근 3개월 이내의 의사의 추가 검사 소견 없음, 2년 이내의 입원 및 수술 이력 없음, 5년 이내의 암 진단 및 치료 이력 없음이라는 세 가지 간편 심사 요건만 부합하면 혈압약 상시 복용 여부와 상관없이 누구나 신속하게 계약을 완료할 수 있다는 점입니다.
+      </p>
+      <p>
+        <strong>장점 두 번째: 고혈압 약 처방 상태에서도 실손 혜택 유지</strong><br>
+        약제를 매일 복용하더라도 고혈압 합병증으로 발생 가능한 심뇌혈관 질환이나 일반 질병, 상해 사고로 인한 의료 기관 내원 시 본인부담금을 제외한 급여 및 비급여 지출액 상당수를 온전히 보전받을 수 있습니다.
+      </p>
+      <p>
+        <strong>단점 첫 번째: 상대적으로 비싼 요금 체계</strong><br>
+        아무래도 기왕력을 지닌 가입자 집단의 손해율이 높다 보니 일반 건강체 상품에 비해 약 1.5배에서 2배 내외의 추가 부담 요금 또는 보험료 할증 금액이 발생하게 된다는 한계가 있습니다.
+      </p>
+      <p>
+        <strong>단점 두 번째: 일부 비급여 특약 보장 및 약제비의 제외</strong><br>
+        유병자 실손에서는 비급여 도수치료, 체외충격파치료, 비급여 주사제, 비급여 자기공명영상진단(MRI/MRA) 등 소위 3대 비급여 특약 보장이 전면 제외됩니다. 아울러 외래 처방 시 발생하는 약제비(처방 조제료) 또한 직접적인 보장 영역에서 비껴가 있어 본인이 약값을 전액 부담해야 하는 구조적 차이점이 뚜렷합니다.
+      </p>
+    </section>
+
+    <section id="community">
+      <h2>대형 커뮤니티 및 소셜 미디어를 통해 보는 실제 가입 동향</h2>
+      <p>
+        최근 현명한 스마트 소비자들은 광고성 가득한 일방적인 자료 제공에서 벗어나 실시간 소통이 보장되는 플랫폼을 통해 진짜 가감 없는 대안을 발굴하고 있습니다. 디시인사이드 실손의료보험 마이너 갤러리나 차를 좋아하는 보배드림 게시판, 유머와 지식을 동시에 취급하는 펨코 및 에펨코리아 자유게시판 등지에서는 매일 고혈압 실비 가입에 대한 실질적인 질의응답이 대량으로 전송됩니다.
+      </p>
+      <p>
+        해당 커뮤니티 공간에서 일컬어지는 은어인 저렴한 실비 가입 좌표 혹은 비대면 심사 성지 업체의 정보는 과도한 수수료를 수취하는 오프라인 오피스 대신 모바일 앱으로 비대면 조율을 진행할 수 있게 돕는 다이렉트 추천 사이트들이 대부분입니다. 누군가가 올린 친절한 내돈내산 장기 유지 후기에는 가입 시 불필요하게 설계사가 덧붙이는 무용한 유료 특약을 말끔히 걷어내고 순수 실손만 챙김으로써 월 기본 금액을 최저가 수준으로 묶어둔 꿀팁들이 아낌없이 기술되어 있습니다.
+      </p>
+      <p>
+        구글링이나 네이버 블로그 검색을 넘나들며 유튜브 내 독립 손해사정사들의 요약 영상을 정주행하거나 트위터, 인스타그램, 페이스북 카드뉴스로 최신 약관 리비전을 모니터링하는 것 또한 아주 보편화된 현상입니다. 또한, 모바일 라이프의 필수재로 안착한 토스 앱이나 카카오톡 대화방 내에 탑재된 자산 통합 관리 코너를 통하면 기가입된 자신의 보장 내역을 일목요연하게 시각화하여 확인해 주기도 하므로, 불필요한 과도 중복 계약을 예방하는 첫걸음이 됩니다.
+      </p>
+      <p>
+        최첨단 시대에 도달한 만큼 일반적인 인적 상담에 그치지 않고 구글의 제미나이 플랫폼이나 오픈AI 진영의 챗지피티에 직접 자사의 최신 상품 설명서를 업로드한 후, 어떤 약관이 장기적 관점에서 유리한지 독자적으로 대조 분석해 보는 혁신적인 지능형 자가 분석 기법도 널리 도입되어 혜택 수준을 고도화하고 있습니다.
+      </p>
+    </section>
+
+    <section id="faq">
+      <h2>고혈압 실비 보험 관련 핵심 궁금증 정리 (FAQ)</h2>
+      <dl>
+        <dt tabindex="0" aria-expanded="false">Q. 혈압약을 먹기 시작한 지 한 달밖에 안 되었는데 가입할 수 있나요?</dt>
+        <dd>
+          네, 가능합니다. 복용 기간의 장단은 간편 가입형 실비의 제약 기준이 아닙니다. 최근 3개월 이내에 의사로부터 신규 진단, 추가 처방, 정밀 검사 필요 소견을 받지 않았으며 2년 이내에 수술 및 입원 이력만 없다면 아무런 문제 없이 즉시 등록 절차를 수행할 수 있습니다.
+        </dd>
+
+        <dt tabindex="0" aria-expanded="false">Q. 당뇨약도 같이 처방받아 상시 복용 중인 복합 환자는 어떻게 하나요?</dt>
+        <dd>
+          고혈압과 당뇨병을 동시에 앓고 계시는 복합 유병자의 경우에도 대다수의 간편 건강 플랜에 원활하게 심사를 요청할 수 있습니다. 다만, 단독 질환인 상태에 비하여 최종 청구되는 예상 월 지출액이나 이율 할증비가 다소 상향될 가능성이 상존하므로, 여러 브랜드별로 견적서를 개별 발행하여 요금제를 대조하는 과정이 유리합니다.
+        </dd>
+
+        <dt tabindex="0" aria-expanded="false">Q. 나중에 혈압이 지극히 정상으로 회복되면 일반 실손으로 계약 전환이 되나요?</dt>
+        <dd>
+          약제를 지속 투약하여 장기간 안정적인 혈압 수치를 안정적으로 관리해 왔고, 일정 기간 내원 기록이나 투약 중단 후 정상 완치 판정을 받는 등의 의학적 요건을 입증하신다면 보험사의 일반 건강체 조건으로 신규 심사를 요청하거나 기존 계약 전환을 신청하는 문을 두드려 볼 수 있습니다. 다만 각 사별 내부 기준이 다르므로 고객센터를 통한 명확한 소명이 필요합니다.
+        </dd>
+
+        <dt tabindex="0" aria-expanded="false">Q. 실비 가입 시 상품권이나 캐시백 같은 사은품 혜택을 주는 곳이 있나요?</dt>
+        <dd>
+          온라인 인터넷 마케팅 채널의 이벤트나 신규 런칭 캠페인 등에 따라 일정 한도의 모바일 상품권 증정 혜택을 제공하는 예가 있으나, 금융소비자보호법상 일정 금액 이상의 과도한 사은품 지급이나 무분별한 현금지원, 지원금 제안 행위는 엄격히 금지되어 있습니다. 안전하고 공신력 있는 공식 파트너사를 통해 신뢰할 수 있는 제휴 서비스를 선택하시는 것이 장기적으로 안전합니다.
+        </dd>
+      </dl>
+    </section>
+
+    <section id="application">
+      <h2>실시간 고혈압 실손의료보험 무료 비교 견적 신청서</h2>
+      <p>
+        국내에 등록된 모든 손해보험사들의 고혈압 전용 실손 계약 조건을 꼼꼼하게 따져보고 가장 최적의 최저가 설안을 무료로 제공해 드립니다. 아래 약식 정보를 정확하게 기재해 주시면 신속히 안내 전화를 드리겠습니다.
+      </p>
+
+      <div class="form-section" style="background-color: #f8fafc; padding: 2rem; border-radius: 12px; border: 1px solid var(--border-color);">
+        <form action="#" method="post" onsubmit="alert('무료 견적 신청이 정상 접수되었습니다. 담당 전문가가 순차적으로 연락을 드릴 예정입니다.'); return false;">
+          
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem;">
+            <div class="form-group">
+              <label for="usr-name">성함 (신청인 본인)</label>
+              <input type="text" id="usr-name" name="usr_name" required placeholder="예: 김민우">
+            </div>
+
+            <div class="form-group">
+              <label for="usr-tel">연락처</label>
+              <input type="tel" id="usr-tel" name="usr_tel" required placeholder="예: 01012345678">
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem;">
+            <div class="form-group">
+              <label for="usr-birth">생년월일 (6자리)</label>
+              <input type="text" id="usr-birth" name="usr_birth" required placeholder="예: 820512">
+            </div>
+
+            <div class="form-group">
+              <label for="usr-pref">선호하는 상담 진행 수단</label>
+              <select id="usr-pref" name="usr_pref">
+                <option value="call">전문 상담사와의 친절한 음성 전화 통화</option>
+                <option value="kakao">카카오톡 메시지를 활용한 조용한 견적 수령</option>
+                <option value="email">이메일 상세 포트폴리오 자료 첨부 전송</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group" style="margin-bottom: 1.5rem;">
+            <label for="usr-req">추가로 기재하고 싶으신 특별 요구 사항 (선호 브랜드, 할인 조건 등)</label>
+            <textarea id="usr-req" name="usr_req" rows="4" style="padding: 0.75rem; border: 1px solid var(--border-color); border-radius: 8px; width: 100%; box-sizing: border-box;" placeholder="예: 한 달 보험료 예산이 3만 원 미만이었으면 좋겠습니다. 혹은 당뇨약도 같이 복용 중입니다."></textarea>
+          </div>
+
+          <div style="margin-bottom: 1.5rem;">
+            <label style="display: flex; align-items: flex-start; gap: 0.5rem; cursor: pointer;">
+              <input type="checkbox" required style="margin-top: 0.25rem;">
+              <span style="font-size: 0.85rem; color: var(--text-muted);">
+                개인정보 수집 및 동의 항목에 동의하며, 맞춤형 보험 비교 컨설팅 제공 목적의 아웃바운드 연락망 등록에 전적으로 합의합니다. (제3자 정보 제공 범위 최소화 준수)
+              </span>
+            </label>
+          </div>
+
+          <button type="submit" class="calc-btn">보험 비교 견적 및 정밀 상담 무료 신청하기</button>
+        </form>
+      </div>
+    </section>
+
+    <section id="external-sources">
+      <h2>고혈압 및 금융 제도 관련 외부 신뢰할 수 있는 공인 기관</h2>
+      <p>
+        가입 계약을 최종적으로 조율하기 전, 공정하고 권위 있는 공적 정보를 탐색하여 본인의 권리를 적극 보호하고 분쟁 발생 가능성을 예방하십시오.
+      </p>
+      <ul class="official-links">
+        <li>
+          <a href="https://silbiltopbohuml.directreliable.com" target="_blank" rel="noopener noreferrer">
+            금융소비자 연합 정보망 - 고혈압 실비 보험 기획관
+          </a> : 소비자 편익 증대와 안전 지수를 분석하여 고혈압 및 각종 질환 대상의 보험료 실태와 표준 약관을 다각도로 리포팅합니다.
+        </li>
+        <li>
+          <a href="https://namu.wiki/w/실손의료보험" target="_blank" rel="noopener noreferrer">
+            나무위키 - 실손의료보험 개요 및 세대별 역사
+          </a> : 1세대부터 4세대 그리고 최근 리비전까지의 역사와 보장 자기부담률 추이 정보를 방대하게 다루고 있습니다.
+        </li>
+        <li>
+          <a href="https://www.fss.or.kr" target="_blank" rel="noopener noreferrer">
+            금융감독원 공식 웹사이트
+          </a> : 유병력자 대상 실손 개선 방향 지침 및 부당한 거절 행위에 대한 분쟁조정 접수와 가이드라인을 제공합니다.
+        </li>
+      </ul>
+    </section>
+  </main>
+
+  <div class="keyword-tags">
+    <span>고혈압 실비 보험</span>
+    <span>평균</span>
+    <span>얼마</span>
+    <span>예상</span>
+    <span>금액</span>
+    <span>가격</span>
+    <span>견적</span>
+    <span>비용</span>
+    <span>요금</span>
+    <span>요금제</span>
+    <span>계산</span>
+    <span>계산기</span>
+    <span>앱</span>
+    <span>어플</span>
+    <span>상담</span>
+    <span>컨설팅</span>
+    <span>장점</span>
+    <span>단점</span>
+    <span>장단점</span>
+    <span>차이점</span>
+    <span>가장</span>
+    <span>제일</span>
+    <span>다이렉트</span>
+    <span>저렴한곳</span>
+    <span>싼곳</span>
+    <span>최저가</span>
+    <span>전문</span>
+    <span>업체</span>
+    <span>내돈내산</span>
+    <span>후기</span>
+    <span>가입</span>
+    <span>종류</span>
+    <span>브랜드</span>
+    <span>순위</span>
+    <span>비교</span>
+    <span>추천</span>
+    <span>할인</span>
+    <span>방법</span>
+    <span>하는법</span>
+    <span>디시</span>
+    <span>보배드림</span>
+    <span>펨코</span>
+    <span>에펨코리아</span>
+    <span>신규</span>
+    <span>인터넷</span>
+    <span>온라인</span>
+    <span>사이트</span>
+    <span>좌표</span>
+    <span>성지</span>
+    <span>신청</span>
+    <span>혜택</span>
+    <span>사은품</span>
+    <span>현금지원</span>
+    <span>지원금</span>
+    <span>상품</span>
+    <span>상품권</span>
+    <span>이벤트</span>
+    <span>고객센터</span>
+    <span>네이버</span>
+    <span>구글</span>
+    <span>유튜브</span>
+    <span>트위터</span>
+    <span>인스타그램</span>
+    <span>페이스북</span>
+    <span>카카오톡</span>
+    <span>텔레그램</span>
+    <span>토스</span>
+    <span>제미나이</span>
+    <span>챗지피티</span>
+    <span>AI</span>
+  </div>
+
+  
+  <script>
+    // FAQ Accordion functionality
+    document.querySelectorAll('dl dt').forEach((dt) => {
+      dt.addEventListener('click', () => {
+        const expanded = dt.getAttribute('aria-expanded') === 'true' || false;
+        dt.setAttribute('aria-expanded', !expanded);
+        dt.classList.toggle('active');
+      });
+      dt.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          dt.click();
+        }
+      });
+    });
+
+    // Custom Interactive Premium Calculator Logic
+    function calculatePremium() {
+      const age = parseInt(document.getElementById('calc-age').value);
+      const gender = document.getElementById('calc-gender').value;
+      const history = parseInt(document.getElementById('calc-history').value);
+      const complication = document.getElementById('calc-complication').value;
+      const type = document.getElementById('calc-type').value;
+
+      // Base rates by age group
+      let baseRate = 0;
+      if (age === 30) baseRate = 17500;
+      else if (age === 40) baseRate = 24000;
+      else if (age === 50) baseRate = 36000;
+      else if (age === 60) baseRate = 53000;
+
+      // Gender multiplier
+      let genderMultiplier = 1.0;
+      if (gender === 'male') {
+        genderMultiplier = 1.05; // Slightly higher for males statistically in older groups
+      } else {
+        genderMultiplier = 0.95;
+      }
+
+      // History multiplier
+      let historyMultiplier = 1.0;
+      if (history === 3) historyMultiplier = 1.03;
+      else if (history === 5) historyMultiplier = 1.08;
+
+      // Complications multiplier
+      let compMultiplier = 1.0;
+      if (complication === 'exists') {
+        compMultiplier = 1.15;
+      }
+
+      // Channel/Type multiplier
+      let typeMultiplier = 1.0;
+      if (type === 'direct') {
+        typeMultiplier = 0.92; // 8% direct discount
+      } else {
+        typeMultiplier = 1.08; // Agent offline fee
+      }
+
+      // Final calculation
+      let finalPremium = Math.round(baseRate * genderMultiplier * historyMultiplier * compMultiplier * typeMultiplier);
+      
+      // Print results nicely
+      document.getElementById('resultAmount').textContent = finalPremium.toLocaleString();
+      document.getElementById('calcResult').style.display = 'block';
+
+      // Scroll smoothly to results
+      document.getElementById('calcResult').scrollIntoView({ behavior: 'smooth' });
+    }
+  </script>
+  
